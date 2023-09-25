@@ -8,18 +8,6 @@
 
 </div>
 
-<div align="center">
-
-[English](https://github.com/MCCTeam/Minecraft-Console-Client/blob/master/README.md) | [Nederlands](https://github.com/MCCTeam/MCCTeam.github.io/blob/master/MCC-README/README-Dutch.md) | [Русский](https://github.com/MCCTeam/MCCTeam.github.io/blob/master/MCC-README/README-Russian.md) | [Српски](https://github.com/MCCTeam/MCCTeam.github.io/blob/master/MCC-README/README-Serbian_Cyrillic.md) | [Türkçe](https://github.com/MCCTeam/MCCTeam.github.io/blob/master/MCC-README/README-Turkish.md) | [Tiếng Việt](https://github.com/MCCTeam/MCCTeam.github.io/blob/master/MCC-README/README-Vietnamese.md) | [简体中文](https://github.com/MCCTeam/MCCTeam.github.io/blob/master/MCC-README/README-Chinese_Simplified.md) | [繁體中文](https://github.com/MCCTeam/MCCTeam.github.io/blob/master/MCC-README/README-Chinese_Traditional.md)
-
-</div>
-
-<div align="center">
-
-[![GitHub Actions build status](https://github.com/MCCTeam/Minecraft-Console-Client/actions/workflows/build-and-release.yml/badge.svg)](https://github.com/MCCTeam/Minecraft-Console-Client/releases/latest) <a href="https://discord.gg/sfBv4TtpC9"><img src="https://img.shields.io/discord/1018553894831403028?color=5865F2&logo=discord&logoColor=white" alt="Discord server" /></a>
-
-</div>
-
 ## **About ℹ️**
 
 **Minecraft Console Client (MCC)** is a lightweight cross-platform open-source Minecraft TUI client for **Java** edition that allows you to connect to any Minecraft Java server, send commands and receive text messages in a fast and easy way without having to open the main Minecraft game.
