@@ -4,13 +4,17 @@
 
 # Talos
 
+
+
 [Documentation](https://mccteam.github.io/) | [Download](#download) | [Usage](https://mccteam.github.io/guide/usage.html)
+
+
 
 </div>
 
 ## **About ℹ️**
 
-**Minecraft Console Client (MCC)** is a lightweight cross-platform open-source Minecraft TUI client for **Java** edition that allows you to connect to any Minecraft Java server, send commands and receive text messages in a fast and easy way without having to open the main Minecraft game.
+**Talos** is a lightweight private Java library for **Minecraft** java edition that allows you to connect to any Minecraft Java server, send packets in raw arrays of byte and receive byte arrays back in a fast and easy way without having to open the main Minecraft game.
 
 ## Download
 
@@ -19,12 +23,9 @@ Get development builds from the [Releases section](https://github.com/MCCTeam/Mi
 ## How to use 📚
 
 -   🌐 [Full Documentation](https://mccteam.github.io/)
--   📦 [Installation](https://mccteam.github.io/guide/installation.html)
 -   📖 [Usage](https://mccteam.github.io/guide/usage.html)
--   ⚙️ [Configuration](https://mccteam.github.io/guide/configuration.html)
--   🤖 [Chat Bots](https://mccteam.github.io/guide/chat-bots.html)
--   📝 [Sample configuration files](MinecraftClient/config/)
 
+   
 ## Getting Help 🙋
 
 Check out the [Website](https://mccteam.github.io/), [README](https://github.com/MCCTeam/Minecraft-Console-Client/tree/master/MinecraftClient/config#minecraft-console-client-user-manual) and existing [Discussions](https://github.com/MCCTeam/Minecraft-Console-Client/discussions): Maybe your question is answered there. If not, please open a [New Discussion](https://github.com/MCCTeam/Minecraft-Console-Client/discussions/new) and ask your question. If you find a bug, please report it in the [Issues](https://github.com/MCCTeam/Minecraft-Console-Client/issues) section.
