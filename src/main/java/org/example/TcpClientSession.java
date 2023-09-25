@@ -22,6 +22,7 @@ import org.tinylog.Logger;
 import javax.crypto.SecretKey;
 import java.net.InetSocketAddress;
 import java.security.GeneralSecurityException;
+import java.util.Arrays;
 import java.util.UUID;
 
 public class TcpClientSession {
@@ -34,12 +35,20 @@ public class TcpClientSession {
     private int compressionThreshold = -1;
 
     private String username;
+    private String uuid;
+    private String ssid;
 
-    public void connect3() {
+    public TcpClientSession(String username, String uuid, String ssid) {
+        this.username = username;
+        this.uuid = uuid;
+        this.ssid = ssid;
+    }
+
+    public void connect3(String ip, int port) {
         NioEventLoopGroup group = new NioEventLoopGroup(1);
         Bootstrap bootstrap = new Bootstrap()
                 .group(group)
-                .channel(NioSocketChannel.class).remoteAddress("localhost", 25563)
+                .channel(NioSocketChannel.class).remoteAddress(ip, port)
                 .option(ChannelOption.IP_TOS, 0x18)
                 .option(ChannelOption.TCP_NODELAY, true)
                 .option(ChannelOption.SO_RCVBUF, 1024 * 1024).option(ChannelOption.SO_SNDBUF, 1024 * 1024).option(ChannelOption.SO_REUSEADDR, true);
@@ -136,6 +145,7 @@ public class TcpClientSession {
     public void sendToServer(ByteBuf packet) {
         if(clientChannel.isWritable()) {
             try {
+                System.out.println("Sent: " + Arrays.toString(packet.array()));
                 clientChannel.writeAndFlush(packet).sync();
             } catch (Exception err){
                 err.printStackTrace();
@@ -162,6 +172,14 @@ public class TcpClientSession {
 
     public String getUsername() {
         return username;
+    }
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public String getSsid() {
+        return ssid;
     }
 
     /*public Account getAccount() {
