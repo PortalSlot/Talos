@@ -1,10 +1,10 @@
 <div align="center">
 
-<img src="https://i.pics.rs/LLDhE.png" alt="Logo"/>
+<img src="https://s.namemc.com/2d/skin/face.png?id=e9620e94f788b720&scale=20" alt="Logo"/>
 
-# Minecraft Console Client (MCC)
+# Talos
 
-[Documentation](https://mccteam.github.io/) | [Download](#download) | [Installation](https://mccteam.github.io/guide/installation.html) | [Configuration](https://mccteam.github.io/guide/configuration.html) | [Usage](https://mccteam.github.io/guide/usage.html)
+[Documentation](https://mccteam.github.io/) | [Download](#download) | [Usage](https://mccteam.github.io/guide/usage.html)
 
 </div>
 
