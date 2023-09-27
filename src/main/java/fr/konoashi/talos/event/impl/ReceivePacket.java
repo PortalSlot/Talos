@@ -1,11 +1,12 @@
-package org.example.event.impl;
+package fr.konoashi.talos.event.impl;
 
 
+import io.netty.buffer.ByteBuf;
 import io.netty.channel.Channel;
-import org.example.event.Event;
+import fr.konoashi.talos.event.Event;
 
 public class ReceivePacket extends Event {
-    private byte[] buffer;
+    private ByteBuf buffer;
 
     private String username;
 
@@ -15,7 +16,7 @@ public class ReceivePacket extends Event {
 
     private int id;
 
-    public byte[] getBuffer() {
+    public ByteBuf getBuffer() {
         return buffer;
     }
 
@@ -35,7 +36,7 @@ public class ReceivePacket extends Event {
         return id;
     }
 
-    public ReceivePacket(String username, String ip, Channel channel, byte[] buffer, int id) {
+    public ReceivePacket(String username, String ip, Channel channel, ByteBuf buffer, int id) {
         this.buffer = buffer;
         this.username = username;
         this.ip = ip;

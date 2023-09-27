@@ -1,12 +1,7 @@
-package org.example;
+package fr.konoashi.talos;
 
-import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
-import org.example.network.PacketBuffer;
-import org.example.network.ProtocolState;
-
-import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
+import fr.konoashi.talos.network.ProtocolState;
 
 public class ClientHandler {
     TcpClientSession tcpClientSession;
@@ -41,6 +36,14 @@ public class ClientHandler {
         tcpClientSession.sendToServer(Unpooled.copiedBuffer(new byte[]{0, 47, 9, 108, 111, 99, 97, 108, 104, 111, 115, 116, 99, -37, 2}));
         tcpClientSession.setState(ProtocolState.LOGIN);
         tcpClientSession.sendToServer(Unpooled.copiedBuffer(new byte[]{0, 8, 107, 111, 110, 111, 97, 115, 104, 105}));
+    }
+
+    public TcpClientSession getTcpClientSession() {
+        return tcpClientSession;
+    }
+
+    public String getUsername() {
+        return username;
     }
 
 }

@@ -1,4 +1,4 @@
-package org.example.event;
+package fr.konoashi.talos.event;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

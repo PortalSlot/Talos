@@ -1,29 +1,21 @@
-package org.example;
+package fr.konoashi.talos;
 
-import com.google.common.util.concurrent.ThreadFactoryBuilder;
+import fr.konoashi.talos.pipeline.NetworkCompression;
+import fr.konoashi.talos.pipeline.NetworkEncryption;
+import fr.konoashi.talos.pipeline.NetworkPacketHandler;
+import fr.konoashi.talos.pipeline.NetworkPacketSizer;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.buffer.ByteBuf;
-import io.netty.buffer.Unpooled;
 import io.netty.channel.*;
-import io.netty.channel.epoll.Epoll;
-import io.netty.channel.epoll.EpollDatagramChannel;
-import io.netty.channel.epoll.EpollEventLoopGroup;
-import io.netty.channel.epoll.EpollSocketChannel;
 import io.netty.channel.nio.NioEventLoopGroup;
-import io.netty.channel.socket.DatagramChannel;
 import io.netty.channel.socket.SocketChannel;
-import io.netty.channel.socket.nio.NioDatagramChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
-import org.example.network.LazyLoadBase;
-import org.example.network.ProtocolState;
-import org.example.pipeline.*;
+import fr.konoashi.talos.network.ProtocolState;
 import org.tinylog.Logger;
 
 import javax.crypto.SecretKey;
-import java.net.InetSocketAddress;
 import java.security.GeneralSecurityException;
 import java.util.Arrays;
-import java.util.UUID;
 
 public class TcpClientSession {
 
@@ -145,7 +137,6 @@ public class TcpClientSession {
     public void sendToServer(ByteBuf packet) {
         if(clientChannel.isWritable()) {
             try {
-                System.out.println("Sent: " + Arrays.toString(packet.array()));
                 clientChannel.writeAndFlush(packet).sync();
             } catch (Exception err){
                 err.printStackTrace();

@@ -1,4 +1,4 @@
-package org.example.network;
+package fr.konoashi.talos.network;
 
 import com.google.common.base.Charsets;
 import io.netty.buffer.*;

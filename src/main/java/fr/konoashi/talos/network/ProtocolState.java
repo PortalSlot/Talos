@@ -1,6 +1,6 @@
-package org.example.network;
+package fr.konoashi.talos.network;
 
-import org.example.util.Utils;
+import fr.konoashi.talos.util.Utils;
 
 public enum ProtocolState {
 

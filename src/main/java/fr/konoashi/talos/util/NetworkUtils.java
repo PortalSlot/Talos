@@ -1,4 +1,4 @@
-package org.example.util;
+package fr.konoashi.talos.util;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.ByteBufInputStream;

@@ -1,9 +1,9 @@
-package org.example.pipeline;
+package fr.konoashi.talos.pipeline;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.ByteToMessageCodec;
-import org.example.util.NetworkUtils;
+import fr.konoashi.talos.util.NetworkUtils;
 
 import java.util.Arrays;
 import java.util.List;

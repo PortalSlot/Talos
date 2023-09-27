@@ -1,21 +1,20 @@
-package org.example.pipeline;
+package fr.konoashi.talos.pipeline;
 
+import fr.konoashi.talos.TcpClientSession;
+import fr.konoashi.talos.util.AuthUtils;
+import fr.konoashi.talos.util.CryptUtil;
+import fr.konoashi.talos.util.Utils;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
-import org.example.TcpClientSession;
-import org.example.event.impl.ReceivePacket;
-import org.example.network.PacketBuffer;
-import org.example.network.ProtocolState;
-import org.example.util.AuthUtils;
-import org.example.util.CryptUtil;
-import org.example.util.Utils;
+import fr.konoashi.talos.event.impl.ReceivePacket;
+import fr.konoashi.talos.network.PacketBuffer;
+import fr.konoashi.talos.network.ProtocolState;
 
 import javax.crypto.SecretKey;
 import java.security.PublicKey;
 import java.util.Arrays;
-import java.util.UUID;
 
 public class NetworkPacketHandler extends SimpleChannelInboundHandler<ByteBuf> {
 
@@ -32,6 +31,7 @@ public class NetworkPacketHandler extends SimpleChannelInboundHandler<ByteBuf> {
         msg.duplicate().readBytes(bytes);
         ByteBuf copiedBuffer = Unpooled.copiedBuffer(bytes);
         PacketBuffer packetBuffer = new PacketBuffer(copiedBuffer);
+        System.out.println("Should be sent to client: " + Arrays.toString(copiedBuffer.array()));
 
         int packetId = packetBuffer.readVarIntFromBuffer();
 
@@ -61,7 +61,7 @@ public class NetworkPacketHandler extends SimpleChannelInboundHandler<ByteBuf> {
                     this.client.enableEncryption(sharedSecret);
                 }
                 if (packetId == 0x02) {
-                    System.out.println("Login success!");
+                    System.out.println("Login success: " + client.clientChannel);
                     this.client.setState(ProtocolState.PLAY);
                 }
                 if (packetId == 0x03) {
@@ -69,13 +69,13 @@ public class NetworkPacketHandler extends SimpleChannelInboundHandler<ByteBuf> {
                 }
             } else if (this.client.getState() == ProtocolState.PLAY) {
                 if (packetId == 0x00) {
-                    keepAlive(packetBuffer.readVarIntFromBuffer());
+                    //keepAlive(packetBuffer.readVarIntFromBuffer());
                 } else if (packetId == 64) {
-                    new ReceivePacket(this.client.getUsername(), this.client.clientChannel.remoteAddress().toString(), this.client.clientChannel, packetBuffer.array(), packetId).call();
+                    new ReceivePacket(this.client.getUsername(), this.client.clientChannel.remoteAddress().toString(), this.client.clientChannel, copiedBuffer, packetId).call();
                     this.client.disconnect();
                 }
                 else {
-                    new ReceivePacket(this.client.getUsername(), this.client.clientChannel.remoteAddress().toString(), this.client.clientChannel, packetBuffer.array(), packetId).call();
+                    new ReceivePacket(this.client.getUsername(), this.client.clientChannel.remoteAddress().toString(), this.client.clientChannel, copiedBuffer, packetId).call();
                 }
             }
 

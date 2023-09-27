@@ -1,4 +1,4 @@
-package org.example.util;
+package fr.konoashi.talos.util;
 
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;

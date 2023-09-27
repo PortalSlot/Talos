@@ -1,4 +1,4 @@
-package org.example.util;
+package fr.konoashi.talos.util;
 
 import com.google.gson.JsonArray;
 

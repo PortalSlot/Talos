@@ -1,16 +1,13 @@
-package org.example.pipeline;
+package fr.konoashi.talos.pipeline;
 
 import io.netty.buffer.ByteBuf;
-import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.ByteToMessageCodec;
-import org.example.network.PacketBuffer;
 
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.IvParameterSpec;
 import java.security.GeneralSecurityException;
-import java.util.Arrays;
 import java.util.List;
 
 public class NetworkEncryption extends ByteToMessageCodec<ByteBuf> {

@@ -1,4 +1,4 @@
-package org.example.network;
+package fr.konoashi.talos.network;
 
 public abstract class LazyLoadBase<T> {
     private T value;
