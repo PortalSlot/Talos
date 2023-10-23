@@ -26,11 +26,3 @@ jobs:
           cd
           cd ProcessManager/
           java -jar ProcessManager.jar Talos
-          cd
-          cd Talos/
-          git pull origin main
-          git status
-          chmod +x ./gradlew
-          ./gradlew build
-          cd build/libs/
-          java -jar Talos.jar
