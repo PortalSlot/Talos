@@ -23,6 +23,6 @@ jobs:
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         port: 56127
         script: |
-          cd /Talos/
+          cd Talos/
           git pull origin main
           git status
