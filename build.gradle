@@ -43,6 +43,6 @@ test {
     useJUnitPlatform()
 }
 
-tasks.jar {
-    archiveFileName.set("Talos.jar")
+bootJar {
+    archiveFileName.set("application-plain.jar")
 }
