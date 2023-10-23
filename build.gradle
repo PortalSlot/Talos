@@ -44,5 +44,5 @@ test {
 }
 
 bootJar {
-    archiveFileName.set("application-plain.jar")
+    archiveFileName.set("Talos.jar")
 }
