@@ -10,7 +10,7 @@
 
 ## **About ℹ️**
 
-**Talos** is a lightweight private Java library for **Minecraft** java edition that allows you to connect to any Minecraft Java server, send packets in raw arrays of byte and receive byte arrays back in a fast and easy way without having to open the main Minecraft game.
+**Talos** is a lightweight private API written in Java for **Minecraft** java edition that allows you to connect to any Minecraft Java server using protocol version 47, send packets in raw arrays of byte and receive byte arrays back in a fast and easy way without having to open the main Minecraft game.
 
 ## Download
 
