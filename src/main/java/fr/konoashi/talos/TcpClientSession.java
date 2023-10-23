@@ -30,13 +30,22 @@ public class TcpClientSession {
     private String uuid;
     private String ssid;
 
-    public TcpClientSession(String username, String uuid, String ssid) {
+    private String ip;
+    private int port;
+
+    private ClientHandler clientHandler;
+
+    public TcpClientSession(String username, String uuid, String ssid, int protocolVersion, ClientHandler clientHandler) {
         this.username = username;
         this.uuid = uuid;
         this.ssid = ssid;
+        this.clientHandler = clientHandler;
     }
 
     public void connect3(String ip, int port) {
+        this.ip = ip;
+        this.port = port;
+
         NioEventLoopGroup group = new NioEventLoopGroup(1);
         Bootstrap bootstrap = new Bootstrap()
                 .group(group)
@@ -171,6 +180,18 @@ public class TcpClientSession {
 
     public String getSsid() {
         return ssid;
+    }
+
+    public String getIp() {
+        return ip;
+    }
+
+    public int getPort() {
+        return port;
+    }
+
+    public ClientHandler getClientHandler() {
+        return clientHandler;
     }
 
     /*public Account getAccount() {

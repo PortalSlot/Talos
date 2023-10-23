@@ -1,6 +1,7 @@
 package fr.konoashi.talos.pipeline;
 
 import fr.konoashi.talos.TcpClientSession;
+import fr.konoashi.talos.event.impl.ConnEstablishedC2S;
 import fr.konoashi.talos.util.AuthUtils;
 import fr.konoashi.talos.util.CryptUtil;
 import fr.konoashi.talos.util.Utils;
@@ -61,6 +62,7 @@ public class NetworkPacketHandler extends SimpleChannelInboundHandler<ByteBuf> {
                     this.client.enableEncryption(sharedSecret);
                 }
                 if (packetId == 0x02) {
+                    new ConnEstablishedC2S(client).call();
                     System.out.println("Login success: " + client.clientChannel);
                     this.client.setState(ProtocolState.PLAY);
                 }
@@ -69,13 +71,13 @@ public class NetworkPacketHandler extends SimpleChannelInboundHandler<ByteBuf> {
                 }
             } else if (this.client.getState() == ProtocolState.PLAY) {
                 if (packetId == 0x00) {
-                    //keepAlive(packetBuffer.readVarIntFromBuffer());
+                    keepAlive(packetBuffer.readVarIntFromBuffer());
                 } else if (packetId == 64) {
-                    new ReceivePacket(this.client.getUsername(), this.client.clientChannel.remoteAddress().toString(), this.client.clientChannel, copiedBuffer, packetId).call();
+                    new ReceivePacket(this.client.getUsername(), this.client.clientChannel.remoteAddress().toString(), this.client.clientChannel, copiedBuffer, packetId, this.client).call();
                     this.client.disconnect();
                 }
                 else {
-                    new ReceivePacket(this.client.getUsername(), this.client.clientChannel.remoteAddress().toString(), this.client.clientChannel, copiedBuffer, packetId).call();
+                    new ReceivePacket(this.client.getUsername(), this.client.clientChannel.remoteAddress().toString(), this.client.clientChannel, copiedBuffer, packetId, this.client).call();
                 }
             }
 

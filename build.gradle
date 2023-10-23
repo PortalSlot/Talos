@@ -1,12 +1,16 @@
 plugins {
+    id 'org.springframework.boot' version '2.7.5'
+    id 'io.spring.dependency-management' version '1.0.15.RELEASE'
     id 'java'
 }
 
 group 'fr.konoashi.talos'
-version '0.9.0'
+version '0.9.1'
 
-compileJava.options.fork = true
-compileJava.options.forkOptions.executable = 'C:\\Program Files\\Java\\jdk-18.0.2.1\\bin\\javac.exe'
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
 
 repositories {
     mavenCentral()
@@ -17,12 +21,22 @@ repositories {
 dependencies {
     //Networking dependencies
     implementation 'io.netty:netty-all:4.1.90.Final'
+
+    //Api dependencies
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework:spring-websocket'
+    implementation 'org.springframework:spring-messaging'
+
     //Util dependencies
     implementation 'org.tinylog:tinylog-api:2.4.1'
     implementation 'com.grack:nanojson:1.7'
     implementation 'com.google.guava:guava:11.0.2'
     implementation 'com.google.code.gson:gson:2.10.1'
+    implementation group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
+    implementation group: 'org.json', name: 'json', version: '20220924'
+    implementation 'org.apache.httpcomponents:httpclient'
     implementation 'org.apache.commons:commons-lang3:3.3.2'
+    implementation "com.fasterxml.jackson.datatype:jackson-datatype-jsr310"
 }
 
 test {

@@ -1,14 +1,20 @@
 package fr.konoashi.talos;
 
+import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import fr.konoashi.talos.network.ProtocolState;
+
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 public class ClientHandler {
     TcpClientSession tcpClientSession;
     String username;
 
-    public ClientHandler(String username, String uuid, String ssid) {
-        this.tcpClientSession = new TcpClientSession(username, uuid, ssid);
+    public ClientHandler(String username, String uuid, String ssid, int protocolVersion) {
+        this.tcpClientSession = new TcpClientSession(username, uuid, ssid, protocolVersion, this);
         this.username = username;
     }
 
@@ -33,9 +39,14 @@ public class ClientHandler {
         packetLoginStart.writeString(username);
         System.out.println(Arrays.toString(bufLoginStart.array()));
         tcpClientSession.sendToServer(bufLoginStart);*/
+        char[] ch = this.username.toCharArray(); //it will read and store each character of String and store into char[].
+        ByteBuf pUB = Unpooled.buffer();
+        pUB.capacity(this.username.length()+2);
+        pUB.writeBytes(new byte[]{0, (byte) this.username.length()});
+        pUB.writeBytes(Unpooled.copiedBuffer(ch, StandardCharsets.US_ASCII).array());
         tcpClientSession.sendToServer(Unpooled.copiedBuffer(new byte[]{0, 47, 9, 108, 111, 99, 97, 108, 104, 111, 115, 116, 99, -37, 2}));
         tcpClientSession.setState(ProtocolState.LOGIN);
-        tcpClientSession.sendToServer(Unpooled.copiedBuffer(new byte[]{0, 8, 107, 111, 110, 111, 97, 115, 104, 105}));
+        tcpClientSession.sendToServer(pUB);
     }
 
     public TcpClientSession getTcpClientSession() {
