@@ -12,13 +12,14 @@ import java.util.Arrays;
 public class Event {
     @SubscribeEvent
     public static void event(ConnEstablishedC2S e) throws IOException {
-        System.out.println("Established conn between client and proxy");
+        System.out.println("Established conn between client and server");
         BackToProxyWS.sessions.get(e.getClient().getClientHandler()).sendMessage(new TextMessage("Established connexion between Client and Server"));
     }
 
     @SubscribeEvent
     public static void event(ReceivePacket e) throws IOException {
         BackToProxyWS.sessions.get(e.getClientSession().getClientHandler()).sendMessage(new BinaryMessage(e.getBuffer().array()));
-        System.out.println("Send to client: " +  Arrays.toString(e.getBuffer().array()));
+        //System.out.println(BackToProxyWS.sessions.get(e.getClientSession().getClientHandler()).isOpen());
+        //System.out.println("Send to client: " +  Arrays.toString(e.getBuffer().array()));
     }
 }

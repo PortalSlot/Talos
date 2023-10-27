@@ -10,10 +10,12 @@ import java.util.Arrays;
 import java.util.stream.Collectors;
 
 public class ClientHandler {
-    TcpClientSession tcpClientSession;
-    String username;
+    private TcpClientSession tcpClientSession;
+    private String username;
 
-    public ClientHandler(String username, String uuid, String ssid, int protocolVersion) {
+    private String botId;
+
+    public ClientHandler(String botId, String username, String uuid, String ssid, int protocolVersion) {
         this.tcpClientSession = new TcpClientSession(username, uuid, ssid, protocolVersion, this);
         this.username = username;
     }
@@ -44,6 +46,7 @@ public class ClientHandler {
         pUB.capacity(this.username.length()+2);
         pUB.writeBytes(new byte[]{0, (byte) this.username.length()});
         pUB.writeBytes(Unpooled.copiedBuffer(ch, StandardCharsets.US_ASCII).array());
+        System.out.println(tcpClientSession.futureClientChannel.remoteAddress().toString());
         tcpClientSession.sendToServer(Unpooled.copiedBuffer(new byte[]{0, 47, 9, 108, 111, 99, 97, 108, 104, 111, 115, 116, 99, -37, 2}));
         tcpClientSession.setState(ProtocolState.LOGIN);
         tcpClientSession.sendToServer(pUB);
@@ -57,4 +60,7 @@ public class ClientHandler {
         return username;
     }
 
+    public String getBotId() {
+        return botId;
+    }
 }

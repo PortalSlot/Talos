@@ -50,7 +50,7 @@ public class NetworkPacketHandler extends SimpleChannelInboundHandler<ByteBuf> {
                 }
                 if (packetId == 0x01) {
                     //There we receive the encryption start packet and we need to send the encryption response and join session on mojang api
-                    String serverId = packetBuffer.readStringFromBuffer(5);
+                    String serverId = packetBuffer.readStringFromBuffer(18);
                     byte[] publicKeyBytes = packetBuffer.readByteArray();
                     PublicKey publicKey = CryptUtil.readPublicKey(publicKeyBytes);
                     byte[] nonce = packetBuffer.readByteArray();

@@ -71,7 +71,7 @@ public class TcpClientSession {
         });
         ChannelFuture channelFuture;
         try {
-            channelFuture = bootstrap.connect("localhost", 25563).await();
+            channelFuture = bootstrap.connect(this.ip, this.port).await();
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
