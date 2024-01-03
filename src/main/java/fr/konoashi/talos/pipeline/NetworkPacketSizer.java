@@ -41,4 +41,10 @@ public class NetworkPacketSizer extends ByteToMessageCodec<ByteBuf> {
         out.add(buf.readBytes(length));
     }
 
+    @Override
+    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause)
+            throws Exception {
+        ctx.fireExceptionCaught(cause);
+    }
+
 }

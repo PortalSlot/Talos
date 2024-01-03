@@ -47,6 +47,7 @@ public class ClientHandler {
         pUB.writeBytes(new byte[]{0, (byte) this.username.length()});
         pUB.writeBytes(Unpooled.copiedBuffer(ch, StandardCharsets.US_ASCII).array());
         System.out.println(tcpClientSession.futureClientChannel.remoteAddress().toString());
+        System.out.println(tcpClientSession.futureClientChannel.isOpen());
         tcpClientSession.sendToServer(Unpooled.copiedBuffer(new byte[]{0, 47, 9, 108, 111, 99, 97, 108, 104, 111, 115, 116, 99, -37, 2}));
         tcpClientSession.setState(ProtocolState.LOGIN);
         tcpClientSession.sendToServer(pUB);

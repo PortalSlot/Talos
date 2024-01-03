@@ -71,12 +71,11 @@ public class NetworkPacketHandler extends SimpleChannelInboundHandler<ByteBuf> {
                 }
             } else if (this.client.getState() == ProtocolState.PLAY) {
                 if (packetId == 0x00) {
-                    keepAlive(packetBuffer.readVarIntFromBuffer());
+                    //keepAlive(packetBuffer.readVarIntFromBuffer());
                 } else if (packetId == 64) {
                     new ReceivePacket(this.client.getUsername(), this.client.clientChannel.remoteAddress().toString(), this.client.clientChannel, copiedBuffer, packetId, this.client).call();
                     this.client.disconnect();
-                }
-                else {
+                } else {
                     new ReceivePacket(this.client.getUsername(), this.client.clientChannel.remoteAddress().toString(), this.client.clientChannel, copiedBuffer, packetId, this.client).call();
                 }
             }
