@@ -16,6 +16,7 @@ public class ClientHandler {
     private String botId;
 
     public ClientHandler(String botId, String username, String uuid, String ssid, int protocolVersion) {
+        this.botId = botId;
         this.tcpClientSession = new TcpClientSession(username, uuid, ssid, protocolVersion, this);
         this.username = username;
     }

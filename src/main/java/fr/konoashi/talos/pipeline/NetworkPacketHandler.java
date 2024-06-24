@@ -2,6 +2,7 @@ package fr.konoashi.talos.pipeline;
 
 import fr.konoashi.talos.TcpClientSession;
 import fr.konoashi.talos.event.impl.ConnEstablishedC2S;
+import fr.konoashi.talos.event.impl.PlayerDisconnect;
 import fr.konoashi.talos.util.AuthUtils;
 import fr.konoashi.talos.util.CryptUtil;
 import fr.konoashi.talos.util.Utils;
@@ -32,7 +33,7 @@ public class NetworkPacketHandler extends SimpleChannelInboundHandler<ByteBuf> {
         msg.duplicate().readBytes(bytes);
         ByteBuf copiedBuffer = Unpooled.copiedBuffer(bytes);
         PacketBuffer packetBuffer = new PacketBuffer(copiedBuffer);
-        System.out.println("Should be sent to client: " + Arrays.toString(copiedBuffer.array()));
+        //System.out.println("Should be sent to client: " + Arrays.toString(copiedBuffer.array()));
 
         int packetId = packetBuffer.readVarIntFromBuffer();
 
@@ -85,6 +86,7 @@ public class NetworkPacketHandler extends SimpleChannelInboundHandler<ByteBuf> {
     @Override
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
         super.channelInactive(ctx);
+        new PlayerDisconnect(this.client).call();
         this.client.disconnect();
     }
 
